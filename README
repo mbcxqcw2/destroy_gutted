@@ -1,3 +1,12 @@
+ABOUT
+=====
+
+Modified version of Evan Keane's DESTROY single pulse software originally found at https://github.com/evanocathain/destroy_gutted
+
+Changes from original:
+
+1) Output candidate file names now reflect input file.
+
 COMPILING
 =========
 
