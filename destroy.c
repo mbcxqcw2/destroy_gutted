@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
   check=get_args(argc,argv,filename,&ascii,&sigproc,&nsamps,&spthresh,&nsmax,&subzero,&dm,&boxcar_option); // get cmd line args
   series=read_data(filename,series,&nsamps,sigproc,ascii,&dm,&raj,&decj,&tstart,&tsamp,&fch1,&foff);       // read in the data
-  sp_search(series,spthresh,nsmax,nsamps,dm,tsamp,boxcar_option);                                          // search the data
+  sp_search(series,spthresh,nsmax,nsamps,dm,tsamp,boxcar_option,filename);                                          // search the data
 
   fprintf(stdout,"Destruction ended ...\n");
   return(0);

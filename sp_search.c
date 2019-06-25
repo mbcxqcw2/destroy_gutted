@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <math.h>
 #include "functions.h"
+#include <string.h>
+
 //#include <limits.h> USED TO CHECK WHAT INT_MAX was during development
 
 void decimate(int* npoints, float* series, int dec_fac);
 void find_mean_sig(int nsamps, float* series, float* mean, float* sig, float thresh);
 void convolve_boxcar(int* npoints, int nsamps, float* series, float* series_conv, int boxcar_size);
 
-void sp_search(float* series, float thresh, int nsmax, int nsamps, double dm, double tsamp, int boxcar_option)
+void sp_search(float* series, float thresh, int nsmax, int nsamps, double dm, double tsamp, int boxcar_option, char inputname[])
 {
 
   int i, j=0, ns=0, npoints, npulses=0, phaseok;
@@ -18,8 +20,14 @@ void sp_search(float* series, float thresh, int nsmax, int nsamps, double dm, do
   fprintf(stdout,"Single Pulse Search:\tThreshold = %.2f sigma\n",thresh);
  
   /* Open output files ... */
-  pulses=fopen("pulses.pls","a");
-  hst=fopen("pulses.hst","a");
+  char out_pls_name[100];
+  char out_hst_name[100];
+  strcpy(out_pls_name,inputname);
+  strcpy(out_hst_name,inputname);
+  strcat(out_pls_name,".pls");
+  strcat(out_hst_name,".hst");
+  pulses=fopen(out_pls_name,"a");
+  hst=fopen(out_hst_name,"a");
   /* Write header line - ADD LATER */
 
   /* Search the time series once */ 
