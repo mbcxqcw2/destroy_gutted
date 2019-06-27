@@ -52,10 +52,10 @@ def ClusterDestroy(DestroyFile,OutFile):
     if check.shape!=(0,): #if cand file is not empty
         if check.shape==(4,): #if only one candidate, reshape to allow appending
             check=check.reshape(1,4)
-        elif check.shape==(0,):#if cand file is empty
-            print('WARNING: INPUT CANDIDATE FILE IS EMPTY') #print warning
-            return #exit
         cands=np.concatenate((cands,check),axis=0) #append candidates
+    elif check.shape==(0,):#if cand file is empty
+        print('WARNING: INPUT CANDIDATE FILE IS EMPTY') #print warning
+        return #exit
     #reassign candidates to arrays
     dms = cands[:,0]
     downsamp = cands[:,1] #known as nsmoothings in destroy files. check this is boxcar width in bins.
@@ -113,6 +113,8 @@ def ClusterDestroy(DestroyFile,OutFile):
     np.savetxt(OutFile,np.c_[peakdms,peakdownsamp,peaksample,peaksnr],fmt='%s')
     
     return 
+        
+
         
 #########################################################################################
 #BEGIN  FUNCTION
